@@ -1,0 +1,112 @@
+<!doctype html>
+<html lang="en">
+<head>
+	<meta charset="utf-8">
+	<meta http-equiv="x-ua-compatible" content="ie=edge">
+	<title>Geomancy</title>
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/open-iconic/1.1.1/font/css/open-iconic-bootstrap.min.css" integrity="sha384-wWci3BOzr88l+HNsAtr3+e5bk9qh5KfjU6gl/rbzfTYdsAVHBEbxB33veLYmFg/a" crossorigin="anonymous">
+	<link rel="stylesheet" href="css/style.min.css">
+</head>
+<body class="bg-dark text-white">
+	<nav class="navbar navbar-expand-md navbar-dark bg-dark fixed-top shadow border-bottom border-secondary">
+		<h1 class="navbar-brand" href="#">Geomancy</h1>
+
+		<button id="newChart" data-toggle="modal" data-target="#questionModal" type="button" class="btn btn-primary mr-auto">New Chart</button>
+
+		<button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbar" aria-controls="navbar" aria-expanded="false" aria-label="Toggle navigation">
+			<span class="navbar-toggler-icon"></span>
+		</button>
+
+		<div class="collapse navbar-collapse" id="navbar">
+			<ul class="navbar-nav ml-auto">
+				<li class="nav-item">
+					<button id="randMusic" type="button" class="btn btn-dark"><span class="oi oi-random" title="Randomize"></span></button>
+
+					<div class="btn-group">
+						<button id="prevMusic" type="button" class="btn btn-dark"><span class="oi oi-media-skip-backward" title="Previous"></span></button>
+						<iframe id="bcPlayer" class="bcPlayer" src="https://bandcamp.com/EmbeddedPlayer/album=3356052944/size=small/bgcol=333333/linkcol=ffffff/artwork=none/transparent=true/" seamless></iframe>
+						<button id="nextMusic" type="button" class="btn btn-dark"><span class="oi oi-media-skip-forward" title="Next"></span></button>
+					</div>
+				</li>
+			</ul>
+		</div>
+	</nav>
+
+	<main class="container-fluid" role="main">
+		<p id="questionHeader" class="h1 text-center my-3 collapse"><span class="text-muted">Question: </span><span id="questionContent"></span></p>
+
+		<h2 class="h4 my-3">Shield Chart</h2>
+		<div id="shieldChartContainer" class="shieldChart mb-5"></div>
+
+		<h2 class="h4 mb-3">Triplicities</h2>
+		<div id="triplicitiesContainer" class="mb-5"></div>
+
+		<h2 class="h4 mb-3">House Chart</h2>
+		<div class="houseChart mb-5 border-secondary shadow">
+			<div id="houseChartContainer" class="outerRotation">
+				<div class="row no-gutters">
+					<div class="col border-secondary"></div>
+					<div class="col border-secondary text-center dr" data-toggle="modal" data-target="#figureModal" data-index="9" data-id="#"></div>
+					<div class="col border-secondary text-center dl" data-toggle="modal" data-target="#figureModal" data-index="8" data-id="#"></div>
+					<div class="col border-secondary"></div>
+				</div>
+				<div class="row no-gutters">
+					<div class="col border-secondary text-center dr" data-toggle="modal" data-target="#figureModal" data-index="11" data-id="#"></div>
+					<div class="col border-secondary text-center ul" data-toggle="modal" data-target="#figureModal" data-index="10" data-id="#"></div>
+					<div class="col border-secondary text-center ur" data-toggle="modal" data-target="#figureModal" data-index="7" data-id="#"></div>
+					<div class="col border-secondary text-center dl" data-toggle="modal" data-target="#figureModal" data-index="6" data-id="#"></div>
+				</div>
+				<div class="row no-gutters">
+					<div class="col border-secondary text-center ur" data-toggle="modal" data-target="#figureModal" data-index="12" data-id="#"></div>
+					<div class="col border-secondary text-center dl" data-toggle="modal" data-target="#figureModal" data-index="1" data-id="#"></div>
+					<div class="col border-secondary text-center dr" data-toggle="modal" data-target="#figureModal" data-index="4" data-id="#"></div>
+					<div class="col border-secondary text-center ul" data-toggle="modal" data-target="#figureModal" data-index="5" data-id="#"></div>
+				</div>
+				<div class="row no-gutters">
+					<div class="col border-secondary"></div>
+					<div class="col border-secondary text-center ur" data-toggle="modal" data-target="#figureModal" data-index="2" data-id="#"></div>
+					<div class="col border-secondary text-center ul" data-toggle="modal" data-target="#figureModal" data-index="3" data-id="#"></div>
+					<div class="col border-secondary"></div>
+				</div>
+			</div>
+			<div id="houseQuestionContainer" class="innerMask border-secondary p-3"></div>
+		</div>
+	</main>
+
+	<div class="modal fade" id="questionModal" tabindex="-1" role="dialog" aria-labelledby="figureModalLabel" aria-hidden="true">
+		<div class="modal-dialog" role="document">
+			<div class="modal-content bg-dark">
+				<div class="modal-header border-secondary">
+					<h5 class="modal-title" id="figureModalLabel">New Chart</h5>
+					<button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+				</div>
+				<div class="modal-body">
+					<form id="questionForm" autocomplete="off" class="form">
+						<div class="input-group">
+							<input type="text" class="form-control" id="questionInput" placeholder="Ask your question (optional)">
+							<div class="input-group-append">
+								<button class="btn btn-primary" type="submit">Generate</button>
+							</div>
+						</div>
+					</form>
+				</div>
+			</div>
+		</div>
+	</div>
+
+	<div class="modal fade" id="figureModal" tabindex="-1" role="dialog" aria-labelledby="figureModalLabel" aria-hidden="true">
+		<div class="modal-dialog modal-lg" role="document">
+			<div class="modal-content bg-dark">
+			</div>
+		</div>
+	</div>
+
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/seedrandom/3.0.5/lib/alea.min.js" integrity="sha384-vB6RKMhXAyj6DWr5EsOyIlaPkGCRmSxL+q1gj0clQzPK7DvovA4ama7AwYLlMTvi" crossorigin="anonymous"></script>
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.4.1/jquery.slim.min.js" integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n" crossorigin="anonymous"></script>
+	<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.bundle.min.js" integrity="sha384-6khuMg9gaYr5AxOqhkVIODVIvm9ynTT5J4V1cfthmT+emCG6yVmEZsRHdxlotUnm" crossorigin="anonymous"></script>
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/textfit/2.4.0/textFit.min.js" integrity="sha384-KdmUEqnxAYvxPU3j5PedMUELMiNfyamt2DIn0ypQN9Ja7JMPkIgkTBujykQLXRUN" crossorigin="anonymous"></script>
+	<script src="js/script.min.js"></script>
+</body>
+</html>
