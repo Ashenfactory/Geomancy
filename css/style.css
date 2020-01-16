@@ -77,6 +77,7 @@ label {
 
 .modal-content a {
 	border-bottom: 1px dotted #fff;
+	transition: color .3s, text-shadow .3s, border .3s;
 }
 
 [data-target="#figureModal"]:hover {
@@ -87,9 +88,14 @@ label {
 	transition: color .3s, text-shadow .3s;
 }
 
-[data-target="#figureModal"]:hover figure {
+[data-target="#figureModal"]:hover figure,
+.modal-content a:hover {
 	text-shadow: 0 0 10px #007bff;
 	color: #007bff;
+}
+
+.modal-content a:hover {
+	border-color: #007bff;
 }
 
 [data-target="#figureModal"]:hover figure .diamond {
