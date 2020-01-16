@@ -458,7 +458,7 @@ function display_figure(x, id, reconciler, modal) {
 		(reconciler ? '-3 offset-9 reconciler shadow' : '') + '"><figure data-id="' + x + '" class="figure">';
 
 	for (var i = 0; i < 4; i++) {
-		figure += '&#x2bc1;' + (nth_bit(x, i) ? '' : '&#x2003;&#x2bc1;') + '<br>';
+		figure += '<span class="diamond"></span>' + (nth_bit(x, i) ? '' : '&#x2003;<span class="diamond"></span>') + '<br>';
 	}
 
 	figure += '<figcaption>' + FIGURES[x].name + '</figcaption></figure></div>';
